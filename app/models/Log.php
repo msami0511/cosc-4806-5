@@ -22,4 +22,15 @@ class Log {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function get_login_counts() {
+        $query = "SELECT username, COUNT(*) as count 
+                  FROM login_logs 
+                  WHERE status = 'good' 
+                  GROUP BY username 
+                  ORDER BY count DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
