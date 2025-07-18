@@ -1,50 +1,36 @@
-<?php
-if (!isset($_SESSION['auth'])) {
-    header('Location: /login');
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>COSC 4806</title>
-    <link rel="icon" href="/favicon.png" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0; padding: 0;
-            background: #f0f0f0;
-        }
-        nav {
-            background-color: #004080;
-            padding: 10px 20px;
-        }
-        nav .brand {
-            color: white;
-            font-weight: bold;
-            font-size: 1.5em;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-<nav>
-    <a href="#" class="brand">COSC 4806</a>
-    <a href="/home">Home</a>
-    <a href="/reminders">Reminders</a>
-    <a href="/reminders/create">Create Reminder</a>
-    <a href="/about">About Me</a>
-    <a href="/logout">Logout</a>
-</nav>
+    <?php
+    if (!isset($_SESSION['auth'])) {
+        header('Location: /login');
+        exit();
+    }
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>COSC 4806</title>
+        <link rel="icon" href="/favicon.png" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">COSC 4806</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/reminders">Reminders</a></li>
+            <li class="nav-item"><a class="nav-link" href="/reminders/create">Create Reminder</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About Me</a></li>
+            <?php if (function_exists('is_admin') && is_admin()): ?>
+              <li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li>
+            <?php endif; ?>
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
