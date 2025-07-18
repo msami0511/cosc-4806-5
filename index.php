@@ -7,6 +7,7 @@ session_start();
 
 require_once 'app/core/App.php';
 require_once 'app/core/Controller.php';
+require_once 'app/core/functions.php';
 require_once 'app/core/config.php';
 require_once 'app/database.php';
 
